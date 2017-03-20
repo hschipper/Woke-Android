@@ -27,3 +27,5 @@ a couple of notes:
 * we are using retrofit2.0.2 to gather information from my site
 * we are using JsonObjects NOT JSONObjects. they come from different libraries. and yes it matters.
 * check out "projects" tab on github under this repo. There you can create tasks and drag and drop them into different buckets.
+* [tutorial](http://javapapers.com/android/android-cards-list-view/) I followed to create the cards.
+* [Android cards](https://developer.android.com/reference/android/support/v7/widget/CardView.html) this failed me but may be worth trying again
