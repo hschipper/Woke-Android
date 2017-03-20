@@ -6,8 +6,8 @@ My website is: 104.198.148.208:8000
 I will be creating pages throughout the semester that we can query from
 
 I currently have 2 pages up for our queries. I will add to this list as they become available.
-* [104.198.148.208:8000/members](104.198.148.208:8000/members)
-* [104.198.208.8000/bills](104.198.148.207:8000/bills)
+* [104.198.148.208:8000/members](http://104.198.148.208:8000/members)
+* [104.198.208.8000/bills](http://104.198.148.207:8000/bills)
 
 if you look at members you will see that there are only 2 members in that list. I currently have the app correctly collecting this data and displaying it if you check it out.
 
