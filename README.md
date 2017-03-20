@@ -17,7 +17,7 @@ there are many more entries under the bills url. However, I discoverd there is a
 one cool thing to note about the cards I implemented:
 * when you click on them they turn green.
 
-android has a library for displaying cards. I had trouble getting that approach to working so I went with this one. there may be a better way to accomplish this and I am open to suggestions.
+android has a library for displaying cards. I had trouble getting that approach to work so I went with this one. there may be a better way to accomplish this and I am open to suggestions.
 
 be sure to check out the code, I left comments everywhere to help guide you.
 
