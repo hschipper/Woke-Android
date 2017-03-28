@@ -7,12 +7,58 @@
     android:layout_height="wrap_content"
     android:background="#e2e4fe">
 
+    <TextView
+        android:text="Hot Topics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainTitle"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
     <ListView
         android:id="@+id/card_listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="168dp"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
         android:dividerHeight="10dp" />
+
+    <TextView
+        android:text="Replace me with filter buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fillerText"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <ListView
+        android:id="@+id/filtered_listview"
+        android:layout_width="match_parent"
+        android:layout_height="267dp"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/button_holder">
+
+        <Button
+            android:text="CONGRESS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/congress_button"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="USER SETTINGS"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_setting_button" />
+    </LinearLayout>
+
 </LinearLayout>
