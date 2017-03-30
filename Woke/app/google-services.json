@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "201903752967",
+    "firebase_url": "https://woke-2c439.firebaseio.com",
+    "project_id": "woke-2c439",
+    "storage_bucket": "woke-2c439.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201903752967:android:134e464a51d37772",
+        "android_client_info": {
+          "package_name": "woke.woke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201903752967-cu1ur43i76ng45bsrmro1gci4t0o00ik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ5hHIJTk8WTZ2YZxOUphm8dR_mZvSuGI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
