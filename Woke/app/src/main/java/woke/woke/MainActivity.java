@@ -1,13 +1,24 @@
 package woke.woke;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -30,6 +41,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+
 public class MainActivity extends AppCompatActivity {
     //these variables are used to display the cards
     private CardArrayAdapter cardArrayAdapter;
@@ -41,10 +59,38 @@ public class MainActivity extends AppCompatActivity {
     //move retrieved data above into this array list.
     ArrayList<Member> members = new ArrayList<Member>();
 
+    //declare auth
+    private FirebaseAuth mAuth;
+    //declare auth listener
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //initialize auth
+        mAuth = FirebaseAuth.getInstance();
+
+
+        //auth state listener
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    //User is signed in
+                    Log.d("Auth","onAuthStateChanged:signed_in:"+ user.getUid());
+                } else {
+                    //User is signed out
+                    Log.d("Auth","onAuthStateChanged:signed_out");
+                }
+                //exclude
+                //updateUI(user);
+            }
+
+        };
+
         //connect to website and return data found at 104.198.148.208:8000/members
         ApiService.getInstance().getMemberDetails().enqueue(new Callback<JsonArray>() {
             @Override
@@ -80,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 //call the function on success.
                 onSuccess();
             }
+
             @Override  //couldn't connect to website.
             public void onFailure(Call<JsonArray> call, Throwable t) {
                 Log.e("Apicall", t.getMessage());
@@ -107,5 +154,20 @@ public class MainActivity extends AppCompatActivity {
         }
         listView.setAdapter(cardArrayAdapter);
 
+    }
+    // Menu icons are inflated just as they were with actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.login_icon){
+            startActivity( new Intent(MainActivity.this,LoginActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
