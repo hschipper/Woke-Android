@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#e2e4fe">
 
-    <TextView
-        android:text="Hot Topics"
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/mainTitle"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:layout_height="match_parent"
+        android:id="@+id/login">
+
+        <TextView
+            android:text="Hot Topics"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainTitle"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_weight="0.05" />
+
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/card_listView"
@@ -24,18 +35,18 @@
         android:divider="@null"
         android:dividerHeight="10dp" />
 
-    <TextView
-        android:text="Replace me with filter buttons"
+    <Button
+        android:text="filter buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fillerText"
+        android:id="@+id/fillerHotTopics"
         android:textAlignment="center"
         android:textSize="24sp" />
 
     <ListView
         android:id="@+id/filtered_listview"
         android:layout_width="match_parent"
-        android:layout_height="267dp"
+        android:layout_height="221dp"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"

@@ -1,4 +1,5 @@
 # Woke-Android
+
 #1 new notes as of 3/29/2017
 
 If you have trouble getting the gradle to sync do these steps
@@ -10,7 +11,8 @@ If you have trouble getting the gradle to sync do these steps
   *  Click Ok and wait for the download
   *  Sync your project again and everything is fine.
 
-----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+
 
 My website is: [104.198.148.208:8000](http://104.198.148.208:8000)
 
