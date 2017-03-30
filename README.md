@@ -1,9 +1,10 @@
 # Woke-Android
-#1 most recent notes
 
-if you have trouble getting the gradle to sync follow these directions:
+#1 new notes as of 3/29/2017
 
-  *  On Android studio, go to the menu bar and click on Tools > Android > SDK Manager.
+If you have trouble getting the gradle to sync do these steps
+
+  * On Android studio, go to the menu bar and click on Tools > Android > SDK Manager.
   *  Click on the SDK Tools tab
   *  check the Google Play services box as well as the Google Repository box.
   *  Click on apply, it will prompt you before applying the new updates.
@@ -11,6 +12,7 @@ if you have trouble getting the gradle to sync follow these directions:
   *  Sync your project again and everything is fine.
 
 --------------------------------------------------------------------------------------
+
 
 My website is: [104.198.148.208:8000](http://104.198.148.208:8000)
 
