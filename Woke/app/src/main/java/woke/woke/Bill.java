@@ -32,6 +32,12 @@ public class Bill {
     @Expose
     private String billText;
 
+
+    public Bill(String title, String sponser) {
+        this.billTitle = title;
+        this.sponser = sponser;
+    }
+
     //Getters and Setters
     public String getTitle() {
         return billTitle;

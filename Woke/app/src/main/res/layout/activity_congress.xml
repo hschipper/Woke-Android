@@ -15,7 +15,7 @@
         android:id="@+id/login">
 
         <TextView
-            android:text="Hot Topics"
+            android:text="Your Congress Rep"
             android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:id="@+id/mainTitle"
@@ -23,30 +23,39 @@
             android:textSize="24sp"
             android:layout_weight="0.05" />
 
+        <EditText
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/zipcode"
+            android:hint="zipcode" />
+
+        <Button
+            android:text=">"
+            android:layout_width="26dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/zipsearch"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_weight="0.01" />
+
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/card_listView"
         android:layout_width="match_parent"
-        android:layout_height="168dp"
+        android:layout_height="189dp"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
         android:dividerHeight="10dp" />
 
-    <Button
-        android:text="filter buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fillerHotTopics"
-        android:textAlignment="center"
-        android:textSize="24sp" />
 
     <ListView
         android:id="@+id/filtered_listView"
         android:layout_width="match_parent"
-        android:layout_height="221dp"
+        android:layout_height="236dp"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
@@ -59,10 +68,10 @@
         android:id="@+id/button_holder">
 
         <Button
-            android:text="CONGRESS"
+            android:text="HOME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/congress_button"
+            android:id="@+id/home_button"
             android:layout_weight="1" />
 
         <Button
