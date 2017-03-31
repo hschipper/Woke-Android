@@ -50,9 +50,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     //these variables are used to display the cards
-    private CardArrayAdapter cardArrayAdapter;
     private ListView listView;
-    //store retrieved data
+    // store retrieved data
     String curMember;
     String curState;
     String curBill;
@@ -61,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     //move retrieved data above into this array list.
     ArrayList<Member> members = new ArrayList<Member>();
     ArrayList<Bill> bills = new ArrayList<Bill>();
+
+
 
     //declare auth
     private FirebaseAuth mAuth;
@@ -71,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button congress = (Button) findViewById(R.id.congress_button);
+
+        congress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CongressActivity.class));
+            }
+        });
 
         //initialize auth
         mAuth = FirebaseAuth.getInstance();
@@ -93,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         };
-        collectMembers();
+        String state = "Texas";
+        collectMembers(state);
         collectBills();
 
     }
@@ -107,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         listView.addHeaderView(new View(this));
         listView.addFooterView(new View(this));
         //list_item_card.xml is found in res/layout/list_item_card.xml
-        cardArrayAdapter = new CardArrayAdapter(getApplicationContext(), R.layout.list_item_card);
+        CardArrayAdapter cardArrayAdapter = new CardArrayAdapter(getApplicationContext(), R.layout.list_item_card);
         //traverse through the ListArray declared at the top (above onCreate) and filled inside onResponse
         for (Member m : members) {
             //display for debugging
@@ -150,10 +161,12 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void collectMembers() {
+    /* This function connects to my website 104.198.148.208:8000/member_page/STATE
+     * String state: this parameter sets which state to query members from
+     */
+    public void collectMembers(String state) {
         //connect to website and return data found at 104.198.148.208:8000/members
-        ApiService.getInstance().getMemberDetails().enqueue(new Callback<JsonArray>() {
+        ApiService.getInstance().getMemberDetails(state).enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 //api success

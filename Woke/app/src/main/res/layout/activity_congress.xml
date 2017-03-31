@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e2e4fe">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/login">
+
+        <TextView
+            android:text="Your Congress Rep"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainTitle"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_weight="0.05" />
+
+        <EditText
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/zipcode"
+            android:hint="zipcode" />
+
+        <Button
+            android:text=">"
+            android:layout_width="26dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/zipsearch"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_weight="0.01" />
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/card_listView"
+        android:layout_width="match_parent"
+        android:layout_height="189dp"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="10dp" />
+
+
+    <ListView
+        android:id="@+id/filtered_listView"
+        android:layout_width="match_parent"
+        android:layout_height="236dp"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/button_holder">
+
+        <Button
+            android:text="HOME"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/home_button"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="USER SETTINGS"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_setting_button" />
+    </LinearLayout>
+
+</LinearLayout>
