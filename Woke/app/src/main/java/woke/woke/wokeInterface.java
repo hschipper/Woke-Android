@@ -16,4 +16,7 @@ public interface wokeInterface {
     //this calls a GET response to my website at base_url/members
     @GET("/members")
     Call<JsonArray> getMemberDetails();
+
+    @GET("/bills")
+    Call<JsonArray> getBillDetails();
 }

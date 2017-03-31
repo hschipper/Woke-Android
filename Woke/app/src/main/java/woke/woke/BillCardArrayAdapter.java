@@ -1,4 +1,5 @@
 package woke.woke;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,39 +12,36 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Created by hana on 3/19/2017.
- *
- * This class is used to display cards on the app
+ * Created by hana on 3/30/2017.
  */
-                                        //Member is MY java class.
-public class CardArrayAdapter extends ArrayAdapter<Member> {
+
+public class BillCardArrayAdapter extends ArrayAdapter<Bill> {
     private static final String TAG = "CardArrayAdapter";
-    private List<Member> cardList = new ArrayList<Member>();
+    private List<Bill> cardList = new ArrayList<Bill>();
     //there are 2 text views to edit so there will be 2 lines on each card.
     static class CardViewHolder {
         TextView line1;
         TextView line2;
     }
 
-    public CardArrayAdapter(Context context, int textViewResourceId) {
+    public BillCardArrayAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
-    //create a list of members
+    //create a list of bills
     @Override
-    public void add(Member object) {
+    public void add(Bill object) {
         cardList.add(object);
         super.add(object);
     }
-    //how many members have been added to this list
+    //how many bills have been added to this list
     @Override
     public int getCount() {
         return this.cardList.size();
     }
-    //retrieve members that have been added to list
+    //retrieve bills that have been added to list
     @Override
-    public Member getItem(int index) {
+    public Bill getItem(int index) {
         return this.cardList.get(index);
     }
     //display each card and edit view to correct member information
@@ -61,9 +59,9 @@ public class CardArrayAdapter extends ArrayAdapter<Member> {
         } else {
             viewHolder = (CardViewHolder)row.getTag();
         }
-        Member card = getItem(position);
-        viewHolder.line1.setText(card.getMember());
-        viewHolder.line2.setText(card.getState());
+        Bill card = getItem(position);
+        viewHolder.line1.setText(card.getTitle());
+        viewHolder.line2.setText(card.getSponser());
         return row;
     }
 
@@ -72,4 +70,3 @@ public class CardArrayAdapter extends ArrayAdapter<Member> {
     }
 
 }
-

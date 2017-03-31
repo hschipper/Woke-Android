@@ -44,7 +44,7 @@
         android:textSize="24sp" />
 
     <ListView
-        android:id="@+id/filtered_listview"
+        android:id="@+id/filtered_listView"
         android:layout_width="match_parent"
         android:layout_height="221dp"
         android:listSelector="@android:color/transparent"
