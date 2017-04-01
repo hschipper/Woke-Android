@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     String curState;
     String curBill;
     String curSponser;
+    String curHeader;
+    String curCommittee;
+    String curAction;
     JsonArray jarray;
     //move retrieved data above into this array list.
     ArrayList<Member> members = new ArrayList<Member>();
@@ -139,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         //traverse through the ListArray declared at the top (above onCreate) and filled inside onResponse
         for (Bill b : bills) {
             //display for debugging
-            Log.d("displaying", b.getTitle() + b.getSponser());
+            Log.d("displaying", b.getTitle() + b.getSponser() + b.getCommittees() + b.getHeading() + b.getLatestAction());
             //add each member to be displayed as a card
             cardArrayAdapter.add(b);
         }
@@ -233,11 +236,14 @@ public class MainActivity extends AppCompatActivity {
                     //extract information from object
                     curBill = jobject.get("billTitle").toString();
                     curSponser = jobject.get("sponser").toString();
+                    curHeader = jobject.get("billHeading").toString();
+                    curCommittee = jobject.get("committees").toString();
+                    curAction = jobject.get("latestAction").toString();
                     //display information for dubug purposes
                     Log.d("Inside for loop ", "billTitle = " + curBill);
                     Log.d("Insdie for loop", "sponser=" + curSponser);
                     //insert into list
-                    bills.add(new Bill(curBill,curSponser));
+                    bills.add(new Bill(curBill,curSponser,curHeader, curCommittee, curAction));
                 }
                 //call the function on success.
                 onBillSuccess();

@@ -33,9 +33,12 @@ public class Bill {
     private String billText;
 
 
-    public Bill(String title, String sponser) {
+    public Bill(String title, String sponser, String header, String committee, String action) {
         this.billTitle = title;
         this.sponser = sponser;
+        this.billHeading = header;
+        this.committees = committee;
+        this.latestAction = action;
     }
 
     //Getters and Setters
