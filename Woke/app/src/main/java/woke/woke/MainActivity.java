@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     // store retrieved data
     String curMember;
     String curState;
+    String curServe;
+    String curParty;
+    String curDistrict;
     String curBill;
     String curSponser;
     String curHeader;
@@ -125,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         //traverse through the ListArray declared at the top (above onCreate) and filled inside onResponse
         for (Member m : members) {
             //display for debugging
-            Log.d("displaying", m.getMember() + m.getState());
+            Log.d("displaying", m.getMember() + m.getState() + m.getParty() + m.getServed() + m.getDistrict());
             //add each member to be displayed as a card
             cardArrayAdapter.add(m);
         }
@@ -194,11 +197,14 @@ public class MainActivity extends AppCompatActivity {
                     //extract information from object
                     curMember = jobject.get("member").toString();
                     curState = jobject.get("state").toString();
+                    curParty = jobject.get("party").toString();
+                    curDistrict = jobject.get("district").toString();
+                    curServe = jobject.get("served").toString();
                     //display information for dubug purposes
                     Log.d("Inside for loop ", "member = " + curMember);
                     Log.d("Insdie for loop", "state=" + curState);
                     //insert into list
-                    members.add(new Member(curMember,curState));
+                    members.add(new Member(curMember, curState, curDistrict, curParty, curServe));
                 }
                 //call the function on success.
                 onSuccess();
@@ -243,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Inside for loop ", "billTitle = " + curBill);
                     Log.d("Insdie for loop", "sponser=" + curSponser);
                     //insert into list
-                    bills.add(new Bill(curBill,curSponser,curHeader, curCommittee, curAction));
+                    bills.add(new Bill(curBill, curSponser, curHeader, curCommittee, curAction));
                 }
                 //call the function on success.
                 onBillSuccess();

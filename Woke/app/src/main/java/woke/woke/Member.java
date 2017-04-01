@@ -24,9 +24,12 @@ public class Member {
     @Expose
     private String state;
 
-    public Member(String member, String state) {
+    public Member(String member, String state, String district, String party, String served) {
         this.member = member;
         this.state = state;
+        this.district = district;
+        this.party = party;
+        this.served = served;
     }
     //Getters and Setters
     public String getDistrict() {
