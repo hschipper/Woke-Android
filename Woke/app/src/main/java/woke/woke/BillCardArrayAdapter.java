@@ -19,7 +19,7 @@ import java.util.List;
 public class BillCardArrayAdapter extends ArrayAdapter<Bill> {
     private static final String TAG = "CardArrayAdapter";
     private List<Bill> cardList = new ArrayList<Bill>();
-    //there are 2 text views to edit so there will be 2 lines on each card.
+    //there are 5 text views to edit so there will be 5 lines on each card.
     static class CardViewHolder {
         TextView line1;
         TextView line2;

@@ -19,5 +19,5 @@ public interface wokeInterface {
     Call<JsonArray> getMemberDetails(@Query("state") String state);
 
     @GET("/bills/")
-    Call<JsonArray> getBillDetails();
+    Call<JsonArray> getBillDetails(@Query("committees") String committees);
 }
