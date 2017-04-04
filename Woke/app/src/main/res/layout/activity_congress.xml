@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#e2e4fe">
+    android:background="#c4a28a">
 
 
     <LinearLayout
@@ -21,7 +21,8 @@
             android:id="@+id/mainTitle"
             android:textAlignment="center"
             android:textSize="24sp"
-            android:layout_weight="0.05" />
+            android:layout_weight="0.05"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         <EditText
             android:layout_width="97dp"
@@ -29,7 +30,8 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/zipcode"
-            android:hint="zipcode" />
+            android:hint="zipcode"
+            android:textColorHint="@color/common_google_signin_btn_text_dark_focused" />
 
         <Button
             android:text=">"

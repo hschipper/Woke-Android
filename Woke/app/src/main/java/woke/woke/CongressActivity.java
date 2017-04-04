@@ -35,6 +35,9 @@ public class CongressActivity extends AppCompatActivity {
     // store retrieved data
     String curMember;
     String curState;
+    String curDistrict;
+    String curParty;
+    String curServe;
 
     JsonArray jarray;
     //move retrieved data above into this array list.
@@ -280,11 +283,14 @@ public class CongressActivity extends AppCompatActivity {
                     //extract information from object
                     curMember = jobject.get("member").toString();
                     curState = jobject.get("state").toString();
+                    curDistrict = jobject.get("district").toString();
+                    curParty = jobject.get("party").toString();
+                    curServe = jobject.get("served").toString();
                     //display information for dubug purposes
                     Log.d("Inside for loop ", "member = " + curMember);
                     Log.d("Insdie for loop", "state=" + curState);
                     //insert into list
-                    members.add(new Member(curMember,curState));
+                    members.add(new Member(curMember, curState, curDistrict, curParty, curServe));
                 }
                 //call the function on success.
                 onSuccess();

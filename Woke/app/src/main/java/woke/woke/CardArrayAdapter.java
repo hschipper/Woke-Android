@@ -25,6 +25,9 @@ public class CardArrayAdapter extends ArrayAdapter<Member> {
     static class CardViewHolder {
         TextView line1;
         TextView line2;
+        TextView line3;
+        TextView line4;
+        TextView line5;
     }
 
     public CardArrayAdapter(Context context, int textViewResourceId) {
@@ -57,13 +60,19 @@ public class CardArrayAdapter extends ArrayAdapter<Member> {
             viewHolder = new CardViewHolder();
             viewHolder.line1 = (TextView) row.findViewById(R.id.line1);
             viewHolder.line2 = (TextView) row.findViewById(R.id.line2);
+            viewHolder.line3 = (TextView) row.findViewById(R.id.line3);
+            viewHolder.line4 = (TextView) row.findViewById(R.id.line4);
+            viewHolder.line5 = (TextView) row.findViewById(R.id.line5);
             row.setTag(viewHolder);
         } else {
             viewHolder = (CardViewHolder)row.getTag();
         }
         Member card = getItem(position);
         viewHolder.line1.setText(card.getMember());
-        viewHolder.line2.setText(card.getState());
+        viewHolder.line2.setText(card.getParty());
+        viewHolder.line3.setText(card.getState());
+        viewHolder.line4.setText(card.getDistrict());
+        viewHolder.line5.setText(card.getServed());
         return row;
     }
 

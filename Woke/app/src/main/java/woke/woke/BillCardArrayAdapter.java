@@ -19,10 +19,13 @@ import java.util.List;
 public class BillCardArrayAdapter extends ArrayAdapter<Bill> {
     private static final String TAG = "CardArrayAdapter";
     private List<Bill> cardList = new ArrayList<Bill>();
-    //there are 2 text views to edit so there will be 2 lines on each card.
+    //there are 5 text views to edit so there will be 5 lines on each card.
     static class CardViewHolder {
         TextView line1;
         TextView line2;
+        TextView line3;
+        TextView line4;
+        TextView line5;
     }
 
     public BillCardArrayAdapter(Context context, int textViewResourceId) {
@@ -55,13 +58,19 @@ public class BillCardArrayAdapter extends ArrayAdapter<Bill> {
             viewHolder = new CardViewHolder();
             viewHolder.line1 = (TextView) row.findViewById(R.id.line1);
             viewHolder.line2 = (TextView) row.findViewById(R.id.line2);
+            viewHolder.line3 = (TextView) row.findViewById(R.id.line3);
+            viewHolder.line4 = (TextView) row.findViewById(R.id.line4);
+            viewHolder.line5 = (TextView) row.findViewById(R.id.line5);
             row.setTag(viewHolder);
         } else {
             viewHolder = (CardViewHolder)row.getTag();
         }
         Bill card = getItem(position);
         viewHolder.line1.setText(card.getTitle());
-        viewHolder.line2.setText(card.getSponser());
+        viewHolder.line2.setText(card.getHeading());
+        viewHolder.line3.setText(card.getCommittees());
+        viewHolder.line4.setText(card.getSponser());
+        viewHolder.line5.setText(card.getLatestAction());
         return row;
     }
 
