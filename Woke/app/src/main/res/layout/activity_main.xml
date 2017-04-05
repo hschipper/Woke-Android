@@ -28,19 +28,20 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/card_listView"
+        android:id="@+id/filtered_listView"
         android:layout_width="match_parent"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
         android:dividerHeight="10dp"
-        android:layout_height="170dp" />
+        android:layout_height="match_parent"
+        android:layout_weight="0.05" />
 
     <TextView
-        android:text="House Committees"
+        android:text="Committees"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/house_committees"
+        android:id="@+id/committees"
         android:textAlignment="center"
         android:textSize="14sp"
         android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -82,10 +83,24 @@
                     android:layout_weight="1" />
 
                 <Button
+                    android:text="Banking, Housing, and Urban Affairs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/banking_housing"
+                    android:layout_weight="1" />
+
+                <Button
                     android:text="Budget"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/budget_h"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:text="commerce, science and transportation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/commerce_science_transport"
                     android:layout_weight="1" />
 
                 <Button
@@ -100,6 +115,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/energy_commerce"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:text="energy and natural resources"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/energy_natural"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:text="environment and public works"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/environment"
                     android:layout_weight="1" />
 
                 <Button
@@ -121,6 +150,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/foreign_affairs"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:text="health, education, labor and pensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/health"
                     android:layout_weight="1" />
 
                 <Button
@@ -205,144 +241,16 @@
     </FrameLayout>
 
     <TextView
-        android:text="Senate Committees"
+        android:text="Select committee to view bills, or reset to clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/senate_committees"
+        android:id="@+id/info"
         android:textAlignment="center"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/senate_buttons">
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:text="agriculture, nutrition and forestry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/agriculture_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="appropriations"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/appropriations_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="armed services"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/armed_services_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="Banking, Housing, and Urban Affairs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/banking_housing"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="budget"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/budget_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="commerce, science and transportation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/commerce_science_transport"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="energy and natural resources"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/energy_natural"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="environment and public works"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/environment"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="finance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/finance"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="foreign relations"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/foreign_relations"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="health, education, labor and pensions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/health"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="homeland security and government affairs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/homeland_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="judiciary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/judiciary_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="rules and administration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/rules_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="small business and entrepreneurship"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/small_business_s"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:text="veterans affairs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/veterans_s"
-                    android:layout_weight="1" />
-            </LinearLayout>
-        </HorizontalScrollView>
-    </FrameLayout>
+        android:textSize="14sp"
+        android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
     <ListView
-        android:id="@+id/filtered_listView"
+        android:id="@+id/card_listView"
         android:layout_width="match_parent"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
@@ -361,6 +269,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/congress_button"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="RESET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reset"
             android:layout_weight="1" />
 
         <Button
