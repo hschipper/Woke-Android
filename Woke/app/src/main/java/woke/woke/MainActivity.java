@@ -1,6 +1,7 @@
 package woke.woke;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -79,61 +80,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button agriculture_h = (Button) findViewById(R.id.agriculture_h);
-        Button agriculture_s = (Button) findViewById(R.id.agriculture_s);
-        Button appropriations_h = (Button) findViewById(R.id.appropriations_h);
-        Button appropriations_s = (Button) findViewById(R.id.appropriations_s);
-        Button armed_services_h = (Button) findViewById(R.id.armed_services_h);
-        Button armed_services_s = (Button) findViewById(R.id.armed_services_s);
-        Button banking_housing = (Button) findViewById(R.id.banking_housing);
-        Button budget_h = (Button) findViewById(R.id.budget_h);
-        Button budget_s = (Button) findViewById(R.id.budget_s);
-        Button commerce = (Button) findViewById(R.id.commerce_science_transport);
-        Button education = (Button) findViewById(R.id.education_workforce);
-        Button energy_commerce = (Button) findViewById(R.id.energy_commerce);
-        Button energy_natural = (Button) findViewById(R.id.energy_natural);
-        Button environment = (Button) findViewById(R.id.environment);
-        Button ethics = (Button) findViewById(R.id.ethics);
-        Button financial_services = (Button) findViewById(R.id.financial_services);
-        Button finance = (Button) findViewById(R.id.finance);
-        Button foreign_affairs = (Button) findViewById(R.id.foreign_affairs);
-        Button foreign_relations = (Button) findViewById(R.id.foreign_relations);
-        Button health = (Button) findViewById(R.id.health);
-        Button homeland_h = (Button) findViewById(R.id.homeland_h);
-        Button homeland_s = (Button) findViewById(R.id.homeland_s);
-        Button house = (Button) findViewById(R.id.house);
-        Button judiciary_h = (Button) findViewById(R.id.judiciary_h);
-        Button judiciary_s = (Button) findViewById(R.id.judiciary_s);
-        Button natural = (Button) findViewById(R.id.natural_resources);
-        Button oversight = (Button) findViewById(R.id.oversight);
-        Button rules_h = (Button) findViewById(R.id.rules_h);
-        Button rules_s = (Button) findViewById(R.id.rules_s);
-        Button science = (Button) findViewById(R.id.science_space);
-        Button small_business_h = (Button) findViewById(R.id.small_business_h);
-        Button small_business_s = (Button) findViewById(R.id.small_business_s);
-        Button transportation = (Button) findViewById(R.id.transportation);
-        Button veterans_h = (Button) findViewById(R.id.veterans_h);
-        Button veterans_s = (Button) findViewById(R.id.veterans_s);
-        Button ways = (Button) findViewById(R.id.ways);
+        final Button agriculture_h = (Button) findViewById(R.id.agriculture_h);
+        final Button appropriations_h = (Button) findViewById(R.id.appropriations_h);
+        final Button armed_services_h = (Button) findViewById(R.id.armed_services_h);
+        final Button banking_housing = (Button) findViewById(R.id.banking_housing);
+        final Button budget_h = (Button) findViewById(R.id.budget_h);
+        final Button commerce = (Button) findViewById(R.id.commerce_science_transport);
+        final Button education = (Button) findViewById(R.id.education_workforce);
+        final Button energy_commerce = (Button) findViewById(R.id.energy_commerce);
+        final Button energy_natural = (Button) findViewById(R.id.energy_natural);
+        final Button environment = (Button) findViewById(R.id.environment);
+        final Button ethics = (Button) findViewById(R.id.ethics);
+        final Button financial_services = (Button) findViewById(R.id.financial_services);
+        final Button foreign_affairs = (Button) findViewById(R.id.foreign_affairs);
+        final Button health = (Button) findViewById(R.id.health);
+        final Button homeland_h = (Button) findViewById(R.id.homeland_h);
+        final Button house = (Button) findViewById(R.id.house);
+        final Button judiciary_h = (Button) findViewById(R.id.judiciary_h);
+        final Button natural = (Button) findViewById(R.id.natural_resources);
+        final Button oversight = (Button) findViewById(R.id.oversight);
+        final Button rules_h = (Button) findViewById(R.id.rules_h);
+        final Button science = (Button) findViewById(R.id.science_space);
+        final Button small_business_h = (Button) findViewById(R.id.small_business_h);
+        final Button transportation = (Button) findViewById(R.id.transportation);
+        final Button veterans_h = (Button) findViewById(R.id.veterans_h);
+        final Button ways = (Button) findViewById(R.id.ways);
         Button congress = (Button) findViewById(R.id.congress_button);
+        Button reset = (Button) findViewById(R.id.reset);
 
         agriculture_h.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String committees = "House - Agriculture";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
+                collectBills(committees);
+                committees = "Senate - Agriculture, Nutrition, and Forestry";
+                collectBills(committees);
+                agriculture_h.setBackgroundColor(Color.DKGRAY);
+                agriculture_h.setTextColor(Color.WHITE);
 
-        agriculture_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Agriculture, Nutrition, and Forestry";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
             }
         });
 
@@ -141,9 +125,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Appropriations";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Appropriations";
+                collectBills(committees);
+                appropriations_h.setBackgroundColor(Color.DKGRAY);
+                appropriations_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -151,9 +137,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Armed Services";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Armed Services";
+                collectBills(committees);
+                armed_services_h.setBackgroundColor(Color.DKGRAY);
+                armed_services_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -161,9 +149,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Budget";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Budget";
+                collectBills(committees);
+                budget_h.setBackgroundColor(Color.DKGRAY);
+                budget_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -171,9 +161,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Education and the Workforce";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                education.setBackgroundColor(Color.DKGRAY);
+                education.setTextColor(Color.WHITE);
             }
         });
 
@@ -181,9 +171,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Energy and Commerce";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                energy_commerce.setBackgroundColor(Color.DKGRAY);
+                energy_commerce.setTextColor(Color.WHITE);
             }
         });
 
@@ -191,9 +181,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Ethics";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                ethics.setBackgroundColor(Color.DKGRAY);
+                ethics.setTextColor(Color.WHITE);
             }
         });
 
@@ -201,9 +191,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Financial Services";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Finance";
+                collectBills(committees);
+                financial_services.setBackgroundColor(Color.DKGRAY);
+                financial_services.setTextColor(Color.WHITE);
             }
         });
 
@@ -211,9 +203,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Foreign Affairs";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Foreign Relations";
+                collectBills(committees);
+                foreign_affairs.setBackgroundColor(Color.DKGRAY);
+                foreign_affairs.setTextColor(Color.WHITE);
             }
         });
 
@@ -221,9 +215,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Homeland Security";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Homeland Security and Government Affairs";
+                collectBills(committees);
+                homeland_h.setBackgroundColor(Color.DKGRAY);
+                homeland_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -231,9 +227,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - House Administration";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                house.setBackgroundColor(Color.DKGRAY);
+                house.setTextColor(Color.WHITE);
             }
         });
 
@@ -241,9 +237,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Judiciary";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Judiciary";
+                collectBills(committees);
+                judiciary_h.setBackgroundColor(Color.DKGRAY);
+                judiciary_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -251,9 +249,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Natural Resources";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                natural.setBackgroundColor(Color.DKGRAY);
+                natural.setTextColor(Color.WHITE);
             }
         });
 
@@ -261,9 +259,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Oversight and Government Reform";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                oversight.setBackgroundColor(Color.DKGRAY);
+                oversight.setTextColor(Color.WHITE);
             }
         });
 
@@ -271,9 +269,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Rules";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Rules and Administration";
+                collectBills(committees);
+                rules_h.setBackgroundColor(Color.DKGRAY);
+                rules_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -281,9 +281,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Science, Space, and Technology";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                science.setBackgroundColor(Color.DKGRAY);
+                science.setTextColor(Color.WHITE);
             }
         });
 
@@ -291,9 +291,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Small Business";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Small Business and Entrepreneurship";
+                collectBills(committees);
+                small_business_h.setBackgroundColor(Color.DKGRAY);
+                small_business_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -301,9 +303,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Transportation and Infrastructure";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                transportation.setBackgroundColor(Color.DKGRAY);
+                transportation.setTextColor(Color.WHITE);
             }
         });
 
@@ -311,9 +313,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Veterans' Affairs";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                committees = "Senate - Veterans' Affairs";
+                collectBills(committees);
+                veterans_h.setBackgroundColor(Color.DKGRAY);
+                veterans_h.setTextColor(Color.WHITE);
             }
         });
 
@@ -321,29 +325,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "House - Ways and Means";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        appropriations_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Appropriations";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        armed_services_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Armed Services";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                ways.setBackgroundColor(Color.DKGRAY);
+                ways.setTextColor(Color.WHITE);
             }
         });
 
@@ -351,19 +335,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "Senate - Banking, Housing, and Urban Affairs";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        budget_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Budget";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                banking_housing.setBackgroundColor(Color.DKGRAY);
+                banking_housing.setTextColor(Color.WHITE);
             }
         });
 
@@ -371,9 +345,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "Senate - Commerce, Science, and Transportation";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                commerce.setBackgroundColor(Color.DKGRAY);
+                commerce.setTextColor(Color.WHITE);
             }
         });
 
@@ -381,9 +355,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "Senate - Energy and Natural Resources";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                energy_natural.setBackgroundColor(Color.DKGRAY);
+                energy_natural.setTextColor(Color.WHITE);
             }
         });
 
@@ -391,29 +365,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "Senate - Environment and Public Works";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        finance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Finance";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        foreign_relations.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Foreign Relations";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                environment.setBackgroundColor(Color.DKGRAY);
+                environment.setTextColor(Color.WHITE);
             }
         });
 
@@ -421,61 +375,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String committees = "Senate - Health, Education, Labor, and Pensions";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
+                collectBills(committees);
+                health.setBackgroundColor(Color.DKGRAY);
+                health.setTextColor(Color.WHITE);
             }
         });
 
-        homeland_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Homeland Security and Governmental Affairs";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        judiciary_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Judiciary";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        rules_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Rules and Administration";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        small_business_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Small Business and Entrepreneurship";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
-
-        veterans_s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String committees = "Senate - Veterans' Affairs";
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                i.putExtra("committees",committees);
-                startActivity(i);
-            }
-        });
         congress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -483,6 +388,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
         //initialize auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -506,7 +418,8 @@ public class MainActivity extends AppCompatActivity {
         };
         String state = "Texas";
         collectMembers(state);
-        String committees = "House - Education and the Workforce";
+        //String committees = "House - Education and the Workforce";
+        String committees = "";
         collectBills(committees);
 
     }
