@@ -6,7 +6,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/card_listView"
+        android:id="@+id/bill_list_view"
         android:cacheColorHint="@android:color/transparent"
         android:listSelector="@android:color/transparent" />
 </LinearLayout>
