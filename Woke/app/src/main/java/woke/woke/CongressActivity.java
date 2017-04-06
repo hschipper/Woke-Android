@@ -225,7 +225,7 @@ public class CongressActivity extends AppCompatActivity {
         listView.addHeaderView(new View(this));
         listView.addFooterView(new View(this));
         //list_item_card.xml is found in res/layout/list_item_card.xml
-        CardArrayAdapter cardArrayAdapter = new CardArrayAdapter(getApplicationContext(), R.layout.list_item_card);
+        CardArrayAdapter cardArrayAdapter = new CardArrayAdapter(getApplicationContext(), R.layout.list_congress_card);
         //traverse through the ListArray declared at the top (above onCreate) and filled inside onResponse
         for (Member m : members) {
             //display for debugging

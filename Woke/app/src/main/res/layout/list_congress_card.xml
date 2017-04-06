@@ -7,11 +7,7 @@
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
     android:descendantFocusability="beforeDescendants">
-    <dependency>
-        <groupId>com.koushikdutta.urlimageviewhelper</groupId>
-        <artifactId>urlimageviewhelper</artifactId>
-        <version>1.0.4</version>
-    </dependency>
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -42,16 +38,16 @@
                 android:layout_weight="1.73">
 
                 <TextView
-                    android:id="@+id/line2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Text line 2" />
-
-                <TextView
                     android:text="Text line 3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/line3" />
+
+                <TextView
+                    android:id="@+id/line2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text line 2" />
 
                 <TextView
                     android:text="Text line 4"
