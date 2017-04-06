@@ -275,17 +275,22 @@ public class CongressActivity extends AppCompatActivity {
 
                 //get the JsonArray out of the element.
                 jarray = jelement.getAsJsonArray();
-
+                JsonElement element;
                 //traverse through the array and stuff each member into a list of members
                 for (int i = 0; i < jarray.size(); i++) {
                     //extract each object
                     JsonObject jobject = jarray.get(i).getAsJsonObject();
                     //extract information from object
-                    curMember = jobject.get("member").toString();
-                    curState = jobject.get("state").toString();
-                    curDistrict = jobject.get("district").toString();
-                    curParty = jobject.get("party").toString();
-                    curServe = jobject.get("served").toString();
+                    element =  jobject.get("member");
+                    curMember = element.getAsString();
+                    element = jobject.get("state");
+                    curState = element.getAsString();
+                    element = jobject.get("district");
+                    curDistrict = element.getAsString();
+                    element = jobject.get("party");
+                    curParty = element.getAsString();
+                    element = jobject.get("served");
+                    curServe = element.getAsString();
                     //display information for dubug purposes
                     Log.d("Inside for loop ", "member = " + curMember);
                     Log.d("Insdie for loop", "state=" + curState);
