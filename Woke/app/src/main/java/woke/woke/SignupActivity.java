@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +16,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by hana on 3/29/2017.
  */
+
+
 
 public class SignupActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
@@ -92,6 +101,28 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+
+                                    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                                    DatabaseReference ref = database.getReference("user");
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    DatabaseReference usersRef = ref.child("users").child(user.getUid());
+
+                                    Map<String, UserSettings.User> users = new HashMap<String, UserSettings.User>();
+                                    Log.d("signup", "before if");
+
+                                    if (user != null) {
+                                        // The user's ID, unique to the Firebase project. Do NOT use this value to
+                                        // authenticate with your backend server, if you have one. Use
+                                        // FirebaseUser.getToken() instead.
+                                        Log.d("settings","insert into db");
+                                        users.put( user.getUid() , new UserSettings.User("none", "none"));
+                                        usersRef.setValue(users);
+                                    } else {
+                                        // No user is signed in.
+                                    }
+
+
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     finish();
                                 }
