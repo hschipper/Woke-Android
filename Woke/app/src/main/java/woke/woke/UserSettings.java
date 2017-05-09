@@ -63,35 +63,18 @@ public class UserSettings extends AppCompatActivity {
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.addChildEventListener(new ChildEventListener() {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("user");
+            mDatabase.child("users").child(user.getUid()).addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Map<String, Object> but = (HashMap<String, Object>) dataSnapshot.getValue();
-                    List<Object> u = new ArrayList<Object>(but.values());
-                    JsonElement el = new JsonParser().parse(u.toString());
-                    JsonArray jarray = el.getAsJsonArray();
+                    HashMap<String, Object> but = (HashMap<String, Object>) dataSnapshot.getValue();
+                    List<Object> u = new ArrayList<>(but.values());
                     Log.d("testing", u.toString());
-                    for (int i = 0; i < jarray.size(); i++) {
-                        //extract each object
-                        JsonObject jobject = jarray.get(i).getAsJsonObject();
-                        JsonElement  element = (JsonElement) jobject.get(user.getUid());
-                        if(element != null) {
-                            JsonObject obj = element.getAsJsonObject();
-                            if (obj != null) {
-                                Log.d("level", obj.get(user.getUid()).toString());
-                                JsonElement ele = obj.get(user.getUid());
-                                JsonObject jobj = ele.getAsJsonObject();
-                                Log.d("jobj", jobj.get("state").toString());
-                                JsonElement state = (JsonElement) jobj.get("state");
-                                stateView.setText("The state I follow is : " + state.getAsString());
-                                if (jobj.get("congress_person").toString() != null) {
-                                    personView.setText("The congress person I follow is : " + jobj.get("congress_person").toString());
-                                    Log.d("object", jobject.get(user.getUid()).toString());
-                                }
-                            }
-                        }
-                    }
+                    String state = u.get(0).toString();
+                    stateView.setText("The state I follow is : " + state);
+                    Log.d("test is ", state);
+                    String person = u.get(1).toString();
+                    personView.setText("The congress person I follow is : " + person);
                 }
 
                 @Override
