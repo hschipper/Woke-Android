@@ -14,12 +14,20 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +47,9 @@ public class CongressActivity extends AppCompatActivity {
     String curParty;
     String curServe;
 
+    public Boolean flag = false;
+    public Boolean zipflag = false;
+
     JsonArray jarray;
     //move retrieved data above into this array list.
     ArrayList<Member> members = new ArrayList<Member>();
@@ -48,13 +59,23 @@ public class CongressActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     //declare auth listener
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    String state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congress);
 
-
+        state = "Wyoming";
+        //zipflag = false;
+        //flag = false;
+        Bundle extras = getIntent().getExtras();
+        if  (extras != null) {
+            flag = extras.getBoolean("flag");
+            zipflag = extras.getBoolean("zipflag");
+            if (zipflag || flag) {
+                state = extras.getString("state");
+            }
+        }
         final EditText inputzip = (EditText) findViewById(R.id.zipcode);
         Button btn_zip = (Button) findViewById(R.id.zipsearch);
         Button home = (Button) findViewById(R.id.home_button);
@@ -177,6 +198,8 @@ public class CongressActivity extends AppCompatActivity {
                 }
                 Intent i = new Intent(CongressActivity.this, CongressActivity.class);
                 i.putExtra("state",state);
+                i.putExtra("zipflag", true);
+                i.putExtra("flag", false);
                 startActivity(i);
                 //collectMembers(state);
             }
@@ -206,11 +229,55 @@ public class CongressActivity extends AppCompatActivity {
 
 
 
-        String state = "Texas";
-        Bundle extras = getIntent().getExtras();
-        if  (extras != null) {
-            state = extras.getString("state");
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null && !zipflag) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("user");
+            mDatabase.child("users").child(user.getUid()).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Map<String, Object> but = (HashMap<String, Object>) dataSnapshot.getValue();
+                    List<Object> u = new ArrayList<Object>(but.values());
+                    Log.d("testing", u.toString());
+                    state = u.get(0).toString();
+                    Log.d("test is ", state);
+
+                    if (state != "New York" && !flag) {
+                        Intent a = new Intent(CongressActivity.this, CongressActivity.class);
+                        a.putExtra("state",state);
+                        a.putExtra("flag",true);
+                        a.putExtra("zipflag", false);
+                        startActivity(a);
+                    }
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
         }
+        //extras = getIntent().getExtras();
+        //if  (extras != null) {
+        //    state = extras.getString("state");
+        //    flag = extras.getBoolean("flag");
+        //}
         collectMembers(state);
 
 
@@ -229,12 +296,14 @@ public class CongressActivity extends AppCompatActivity {
         //traverse through the ListArray declared at the top (above onCreate) and filled inside onResponse
         for (Member m : members) {
             //display for debugging
-            Log.d("displaying", m.getMember() + m.getState());
+        //    Log.d("displaying", m.getMember() + m.getState());
             //add each member to be displayed as a card
 
             cardArrayAdapter.add(m);
         }
         listView.setAdapter(cardArrayAdapter);
+        zipflag = false;
+        flag = false;
 
     }
 
@@ -265,7 +334,7 @@ public class CongressActivity extends AppCompatActivity {
                 //when this returns 200 we connected to webpage2
                 Log.d("MainActivity", "Status Code = " + response.code());
                 //string of json collected from website
-                Log.d("MainActivity", "body test = " + response.body());
+            //    Log.d("MainActivity", "body test = " + response.body());
                 //stuff that string into a JsonElement
                 JsonElement jelement = new JsonParser().parse(response.body().toString());
 
@@ -292,8 +361,8 @@ public class CongressActivity extends AppCompatActivity {
                     element = jobject.get("served");
                     curServe = element.getAsString();
                     //display information for dubug purposes
-                    Log.d("Inside for loop ", "member = " + curMember);
-                    Log.d("Insdie for loop", "state=" + curState);
+                //    Log.d("Inside for loop ", "member = " + curMember);
+                //    Log.d("Insdie for loop", "state=" + curState);
                     //insert into list
                     members.add(new Member(curMember, curState, curDistrict, curParty, curServe));
                 }
@@ -306,6 +375,7 @@ public class CongressActivity extends AppCompatActivity {
                 Log.e("Apicall", t.getMessage());
                 t.printStackTrace();
             }
+
         });
 
     }
