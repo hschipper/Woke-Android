@@ -21,5 +21,6 @@
         <activity android:name=".ResetPasswordActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".CongressActivity"></activity>
+        <activity android:name=".UserSettings"></activity>
     </application>
 </manifest>

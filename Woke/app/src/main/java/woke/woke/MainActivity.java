@@ -50,6 +50,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
+
     //these variables are used to display the cards
     private ListView listView;
     // store retrieved data
@@ -62,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
     //move retrieved data above into this array list.
     ArrayList<Bill> featureBills = new ArrayList<Bill>();
     ArrayList<Bill> bills = new ArrayList<Bill>();
-
-
 
     //declare auth
     private FirebaseAuth mAuth;
@@ -102,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         final Button ways = (Button) findViewById(R.id.ways);
         Button congress = (Button) findViewById(R.id.congress_button);
         Button reset = (Button) findViewById(R.id.reset);
+        Button settings = (Button) findViewById(R.id.user_setting_button);
 
         agriculture_h.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -383,6 +383,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        settings.setOnClickListener(new View.OnClickListener() {
+           @Override
+            public void onClick(View v) {
+               startActivity(new Intent(MainActivity.this,UserSettings.class));
+           }
+        });
+
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -428,7 +435,7 @@ public class MainActivity extends AppCompatActivity {
         //traverse through the ListArray declared at the top (above onCreate) and filled inside onResponse
         for (Bill b : bills) {
             //display for debugging
-            Log.d("displaying", b.getTitle() + b.getSponser() + b.getCommittees() + b.getHeading() + b.getLatestAction());
+           // Log.d("displaying", b.getTitle() + b.getSponser() + b.getCommittees() + b.getHeading() + b.getLatestAction());
             //add each member to be displayed as a card
             cardArrayAdapter.add(b);
         }
@@ -445,7 +452,7 @@ public class MainActivity extends AppCompatActivity {
         //traverse through the ListArray declared at the top (above onCreate) and filled inside onResponse
         for (Bill b : featureBills) {
             //display for debugging
-            Log.d("displaying", b.getTitle() + b.getSponser() + b.getCommittees() + b.getHeading() + b.getLatestAction());
+            //Log.d("displaying", b.getTitle() + b.getSponser() + b.getCommittees() + b.getHeading() + b.getLatestAction());
             //add each member to be displayed as a card
             cardArrayAdapter.add(b);
         }
