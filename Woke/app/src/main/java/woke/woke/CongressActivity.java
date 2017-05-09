@@ -14,12 +14,20 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +47,8 @@ public class CongressActivity extends AppCompatActivity {
     String curParty;
     String curServe;
 
+    public Boolean flag = false;
+
     JsonArray jarray;
     //move retrieved data above into this array list.
     ArrayList<Member> members = new ArrayList<Member>();
@@ -48,13 +58,18 @@ public class CongressActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     //declare auth listener
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    String state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congress);
 
-
+        state = "Wyoming";
+        Bundle extras = getIntent().getExtras();
+        if  (extras != null) {
+            state = extras.getString("state");
+            flag = extras.getBoolean("flag");
+        }
         final EditText inputzip = (EditText) findViewById(R.id.zipcode);
         Button btn_zip = (Button) findViewById(R.id.zipsearch);
         Button home = (Button) findViewById(R.id.home_button);
@@ -206,10 +221,68 @@ public class CongressActivity extends AppCompatActivity {
 
 
 
-        String state = "Texas";
-        Bundle extras = getIntent().getExtras();
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Map<String, Object> but = (HashMap<String, Object>) dataSnapshot.getValue();
+                    List<Object> u = new ArrayList<Object>(but.values());
+                    JsonElement el = new JsonParser().parse(u.toString());
+                    JsonArray jarray = el.getAsJsonArray();
+                    Log.d("testing", u.toString());
+                    for (int i = 0; i < jarray.size(); i++) {
+                        //extract each object
+                        JsonObject jobject = jarray.get(i).getAsJsonObject();
+                        JsonElement  element = (JsonElement) jobject.get(user.getUid());
+                        if(element != null) {
+                            JsonObject obj = element.getAsJsonObject();
+                            if (obj != null) {
+                                Log.d("level", obj.get(user.getUid()).toString());
+                                JsonElement ele = obj.get(user.getUid());
+                                JsonObject jobj = ele.getAsJsonObject();
+                                Log.d("jobj", jobj.get("state").toString());
+                                JsonElement parse_state = (JsonElement) jobj.get("state");
+                                state = parse_state.getAsString();
+                            }
+                        }
+                    }
+                    if (state != "New York" && !flag) {
+                        Intent a = new Intent(CongressActivity.this, CongressActivity.class);
+                        a.putExtra("state",state);
+                        a.putExtra("flag",true);
+                        startActivity(a);
+                    }
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+        extras = getIntent().getExtras();
         if  (extras != null) {
             state = extras.getString("state");
+            flag = extras.getBoolean("flag");
         }
         collectMembers(state);
 

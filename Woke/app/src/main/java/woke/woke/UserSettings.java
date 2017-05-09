@@ -50,12 +50,6 @@ public class UserSettings extends AppCompatActivity {
             this.state = state;
             congress_person = person;
         }
-        public String getState() {
-            return this.state;
-        }
-        public String getCongress_person() {
-            return this.congress_person;
-        }
     }
 
     @Override

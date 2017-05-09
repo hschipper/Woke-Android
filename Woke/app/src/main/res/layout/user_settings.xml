@@ -54,4 +54,10 @@
         android:text="Change Settings"
         android:focusableInTouchMode="true" />
 
+    <TextView
+        android:text="Do not put spaces inside entries... parsing will crash :("
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
 </LinearLayout>

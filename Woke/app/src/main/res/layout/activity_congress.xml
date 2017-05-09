@@ -44,20 +44,11 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/card_listView"
-        android:layout_width="match_parent"
-        android:layout_height="189dp"
-        android:listSelector="@android:color/transparent"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@null"
-        android:dividerHeight="10dp" />
-
 
     <ListView
         android:id="@+id/filtered_listView"
         android:layout_width="match_parent"
-        android:layout_height="236dp"
+        android:layout_height="413dp"
         android:listSelector="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@null"
